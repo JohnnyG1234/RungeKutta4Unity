@@ -7,8 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Collision : MonoBehaviour
 {
-    const float rayDist = 3f;
-    private void OnTriggerEnter2D(Collider2D col)
+    const float RAY_DIST = 3f;
+    private void OnTriggerStay2D(Collider2D col)
     {
         RK4Position mover = this.gameObject.GetComponent<RK4Position>();
         List<Vector3> faces = new List<Vector3>();
@@ -19,10 +19,10 @@ public class Collision : MonoBehaviour
         List<RaycastHit2D> hitsRIGHT = new List<RaycastHit2D>();
         ContactFilter2D filter = new ContactFilter2D();
         filter.useTriggers = false; 
-        hitsUP.AddRange(Physics2D.RaycastAll(transform.position, transform.up, rayDist));
-        hitsDOWN.AddRange(Physics2D.RaycastAll(transform.position, -transform.up, rayDist));
-        hitsLEFT.AddRange(Physics2D.RaycastAll(transform.position, transform.right, rayDist));
-        hitsRIGHT.AddRange(Physics2D.RaycastAll(transform.position, -transform.right, rayDist));
+        hitsUP.AddRange(Physics2D.RaycastAll(transform.position, transform.up, RAY_DIST));
+        hitsDOWN.AddRange(Physics2D.RaycastAll(transform.position, -transform.up, RAY_DIST));
+        hitsLEFT.AddRange(Physics2D.RaycastAll(transform.position, transform.right, RAY_DIST));
+        hitsRIGHT.AddRange(Physics2D.RaycastAll(transform.position, -transform.right, RAY_DIST));
         float saveDist = float.MaxValue;
 
         foreach(RaycastHit2D hit in hitsUP)
@@ -74,5 +74,7 @@ public class Collision : MonoBehaviour
         {
             mover.velocity *= 1 - wall.Friction;
         }
+
+        mover.RK4();
     }
 }

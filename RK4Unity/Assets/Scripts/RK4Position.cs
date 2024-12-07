@@ -14,7 +14,7 @@ public class RK4Position : MonoBehaviour
         RK4();
     }
 
-    private void RK4()
+    public void RK4()
     {
        
         float k1x = velocity * Time.deltaTime * direction.x;
