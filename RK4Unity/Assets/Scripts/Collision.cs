@@ -7,26 +7,72 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Collision : MonoBehaviour
 {
+    const float rayDist = 3f;
     private void OnTriggerEnter2D(Collider2D col)
     {
-        moveTest mover = this.gameObject.GetComponent<moveTest>();
-        Vector3 face = Vector3.zero;
-        RaycastHit2D hit;
-        if(hit = Physics2D.Raycast(transform.position, mover.move))
+        RK4Position mover = this.gameObject.GetComponent<RK4Position>();
+        List<Vector3> faces = new List<Vector3>();
+
+        List<RaycastHit2D> hitsUP = new List<RaycastHit2D>();
+        List<RaycastHit2D> hitsDOWN = new List<RaycastHit2D>();
+        List<RaycastHit2D> hitsLEFT = new List<RaycastHit2D>();
+        List<RaycastHit2D> hitsRIGHT = new List<RaycastHit2D>();
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.useTriggers = false; 
+        hitsUP.AddRange(Physics2D.RaycastAll(transform.position, transform.up, rayDist));
+        hitsDOWN.AddRange(Physics2D.RaycastAll(transform.position, -transform.up, rayDist));
+        hitsLEFT.AddRange(Physics2D.RaycastAll(transform.position, transform.right, rayDist));
+        hitsRIGHT.AddRange(Physics2D.RaycastAll(transform.position, -transform.right, rayDist));
+        float saveDist = float.MaxValue;
+
+        foreach(RaycastHit2D hit in hitsUP)
         {
-            Debug.Log("hit");
-            if(hit.collider.gameObject != gameObject)
+            if (hit.collider.gameObject != gameObject && hit.distance < saveDist)
             {
-                face = hit.normal;
+                faces.Add(hit.normal);
+                saveDist = hit.distance;
             }
         }
-        Vector3 current = this.gameObject.GetComponent<moveTest>().move;
+        foreach (RaycastHit2D hit in hitsDOWN)
+        {
+            if (hit.collider.gameObject != gameObject && hit.distance < saveDist)
+            {
+                faces.Add(hit.normal);
+                saveDist = hit.distance;
+            }
+        }
+        foreach (RaycastHit2D hit in hitsLEFT)
+        {
+            if (hit.collider.gameObject != gameObject && hit.distance < saveDist)
+            {
+                faces.Add(hit.normal);
+                saveDist = hit.distance;
+            }
+        }
+        foreach (RaycastHit2D hit in hitsRIGHT)
+        {
+            if (hit.collider.gameObject != gameObject && hit.distance < saveDist)
+            {
+                faces.Add(hit.normal);
+                saveDist = hit.distance;
+            }
+        }
 
-        mover.move = current - 2 * Vector3.Dot(current, face) * face;
+        Vector3 face = Vector3.zero;
+        foreach(Vector3 f in faces)
+        {
+            face += f;
+        }
+        face /= faces.Count;
+
+        Debug.Log("face: " + face);
+        Vector3 current = this.gameObject.GetComponent<RK4Position>().direction;
+
+        mover.direction = current - 2 * Vector3.Dot(current, face) * face;
         WallCollider wall = col.gameObject.GetComponent<WallCollider>();
         if(wall)
         {
-            mover.speed *= 1 - wall.Friction;
+            mover.velocity *= 1 - wall.Friction;
         }
     }
 }
