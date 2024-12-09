@@ -72,8 +72,7 @@ public class Collision : MonoBehaviour
         WallCollider wall = col.gameObject.GetComponent<WallCollider>();
         if(wall)
         {
-            mover.velocity *= 1 - wall.Friction;
-            
+            mover.speed *= 1 - wall.Friction;
         }
 
         mover.RK4();

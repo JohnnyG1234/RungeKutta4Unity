@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 899070570}
   - component: {fileID: 899070571}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Puck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab445c4b772e76d498d1c979689d9130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 150
+  speed: 120
   direction: {x: -1, y: 0}
 --- !u!212 &899070568
 SpriteRenderer:
@@ -394,7 +394,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a02b59b65e6076449a0bacc4aa44ab9e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -414,7 +414,7 @@ Transform:
   m_GameObject: {fileID: 899070566}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 0.01, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -785,9 +785,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &1221312994
 MonoBehaviour:
@@ -801,7 +801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5596d69827a678469a60ae9ebf110fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Friction: -0.04
+  Friction: 0
 --- !u!114 &1221312995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,8 +814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d960bd5590bb944ba19c412b166fa88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 150
-  direction: {x: 0, y: 0}
+  speed: 5
 --- !u!1 &1258498905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1146,10 +1145,11 @@ PolygonCollider2D:
       - {x: -8.677519, y: -3.644669}
       - {x: -8.915551, y: -2.8687515}
       - {x: -8.887418, y: -1.9936888}
+      - {x: -8.879061, y: -1.4674616}
       - {x: -8.88745, y: -0.8343853}
       - {x: -8.931205, y: 0.70940095}
       - {x: -8.831199, y: 1.1717845}
-      - {x: -8.803049, y: 1.6562893}
+      - {x: -8.920296, y: 1.7149125}
       - {x: -8.953058, y: 2.24686}
       - {x: -8.868405, y: 2.9001997}
       - {x: -8.656226, y: 3.606239}
@@ -1172,7 +1172,8 @@ PolygonCollider2D:
       - {x: 8.928033, y: 1.5781682}
       - {x: 8.934313, y: 0.75315565}
       - {x: 8.909335, y: -0.8749842}
-      - {x: 8.846819, y: -1.2092751}
+      - {x: 8.938941, y: -1.2009002}
+      - {x: 8.868962, y: -1.5267513}
       - {x: 8.840539, y: -1.8781085}
       - {x: 8.912443, y: -2.5030456}
       - {x: 8.8521, y: -3.012716}
@@ -1214,9 +1215,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 7
 --- !u!114 &1359895003
 MonoBehaviour:
@@ -1230,7 +1231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5596d69827a678469a60ae9ebf110fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Friction: 0.02
+  Friction: 0
 --- !u!1 &1491090240
 GameObject:
   m_ObjectHideFlags: 0
