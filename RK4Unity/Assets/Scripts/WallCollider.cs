@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class WallCollider : MonoBehaviour
 {
-    public float Friction = 0f;
+    public float Friction;
+    
 }

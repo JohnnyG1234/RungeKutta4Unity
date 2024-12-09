@@ -57,7 +57,7 @@ public class Collision : MonoBehaviour
                 saveDist = hit.distance;
             }
         }
-
+        
         Vector3 face = Vector3.zero;
         foreach(Vector3 f in faces)
         {
@@ -73,6 +73,7 @@ public class Collision : MonoBehaviour
         if(wall)
         {
             mover.velocity *= 1 - wall.Friction;
+            
         }
 
         mover.RK4();

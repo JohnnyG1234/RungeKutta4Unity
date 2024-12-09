@@ -1,16 +1,22 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RK4Position : MonoBehaviour
+public class PaddleController : MonoBehaviour
 {
     public float velocity;
-    public Vector2 direction = new Vector2(1, 1);
+    public Vector2 direction = new Vector2(0, 0);
 
     private void FixedUpdate()
     {
         RK4();
+    }
+
+    private  void Update()
+    {
+        direction.x = Input.GetAxis("Horizontal");
+        direction.y = Input.GetAxis("Vertical");
+
     }
 
     public void RK4()
@@ -36,7 +42,6 @@ public class RK4Position : MonoBehaviour
 
         gameObject.transform.position = new Vector2(finalX, finalY);
     }
-
 
 
 }
