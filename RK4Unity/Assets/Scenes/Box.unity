@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 245106596}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.79, y: 0.01, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -332,6 +332,7 @@ GameObject:
   - component: {fileID: 899070567}
   - component: {fileID: 899070570}
   - component: {fileID: 899070571}
+  - component: {fileID: 899070572}
   m_Layer: 0
   m_Name: Puck
   m_TagString: Untagged
@@ -467,6 +468,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca421f29a08bb54e8ab79e76bbcf2f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &899070572
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899070566}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1130018779
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +677,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1221312991}
   - component: {fileID: 1221312990}
-  - component: {fileID: 1221312993}
   - component: {fileID: 1221312992}
   - component: {fileID: 1221312994}
   - component: {fileID: 1221312995}
@@ -700,8 +727,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 43e671af58f1fac4e9a6f718f44df0af, type: 3}
   m_Color: {r: 0.9433962, g: 0.26254895, b: 0.26254895, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -721,7 +748,7 @@ Transform:
   m_GameObject: {fileID: 1221312989}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.24, y: -0.03, z: 0}
+  m_LocalPosition: {x: -6.72, y: -0.04, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -762,33 +789,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!50 &1221312993
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1221312989}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
 --- !u!114 &1221312994
 MonoBehaviour:
   m_ObjectHideFlags: 0
