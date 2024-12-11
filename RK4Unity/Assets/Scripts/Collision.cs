@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Collision : MonoBehaviour
 {
+<<<<<<< HEAD
     const float RAY_DIST = 0.4f;
     float playerColTime = .25f;
 
@@ -15,6 +16,9 @@ public class Collision : MonoBehaviour
         playerColTime -= Time.deltaTime;
     }
 
+=======
+    const float RAY_DIST = 3f;
+>>>>>>> parent of f57524b (bugfixing)
     private void OnTriggerStay2D(Collider2D col)
     {
         RK4Position mover = this.gameObject.GetComponent<RK4Position>();
@@ -32,6 +36,7 @@ public class Collision : MonoBehaviour
         hitsVX.AddRange(Physics2D.RaycastAll(transform.position + (transform.up * RAY_DIST) + (-transform.right * RAY_DIST), -(transform.up - transform.right).normalized, RAY_DIST * 2));
         float saveDist = float.MaxValue;
 
+<<<<<<< HEAD
 
         if (col.gameObject.tag == "Player" & playerColTime > 0)
         {
@@ -43,6 +48,9 @@ public class Collision : MonoBehaviour
         }
 
         foreach(RaycastHit2D hit in hitsV)
+=======
+        foreach(RaycastHit2D hit in hitsUP)
+>>>>>>> parent of f57524b (bugfixing)
         {
             if (hit.collider.gameObject != gameObject && hit.distance < saveDist)
             {
