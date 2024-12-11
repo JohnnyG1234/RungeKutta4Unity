@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Collision : MonoBehaviour
 {
-    const float RAY_DIST = 3f;
+    const float RAY_DIST = 0.4f;
     float playerColTime = .25f;
 
     private void Update()
@@ -20,16 +20,16 @@ public class Collision : MonoBehaviour
         RK4Position mover = this.gameObject.GetComponent<RK4Position>();
         List<Vector3> faces = new List<Vector3>();
 
-        List<RaycastHit2D> hitsUP = new List<RaycastHit2D>();
-        List<RaycastHit2D> hitsDOWN = new List<RaycastHit2D>();
-        List<RaycastHit2D> hitsLEFT = new List<RaycastHit2D>();
-        List<RaycastHit2D> hitsRIGHT = new List<RaycastHit2D>();
+        List<RaycastHit2D> hitsV = new List<RaycastHit2D>();
+        List<RaycastHit2D> hitsVX = new List<RaycastHit2D>();
+        List<RaycastHit2D> hitsH = new List<RaycastHit2D>();
+        List<RaycastHit2D> hitsHX = new List<RaycastHit2D>();
         ContactFilter2D filter = new ContactFilter2D();
         filter.useTriggers = false; 
-        hitsUP.AddRange(Physics2D.RaycastAll(transform.position, transform.up, RAY_DIST));
-        hitsDOWN.AddRange(Physics2D.RaycastAll(transform.position, -transform.up, RAY_DIST));
-        hitsLEFT.AddRange(Physics2D.RaycastAll(transform.position, transform.right, RAY_DIST));
-        hitsRIGHT.AddRange(Physics2D.RaycastAll(transform.position, -transform.right, RAY_DIST));
+        hitsV.AddRange(Physics2D.RaycastAll(transform.position + (transform.up * RAY_DIST), -transform.up, RAY_DIST * 2));
+        hitsVX.AddRange(Physics2D.RaycastAll(transform.position + (transform.up * RAY_DIST) + (transform.right * RAY_DIST), -(transform.up + transform.right).normalized, RAY_DIST * 2));
+        hitsH.AddRange(Physics2D.RaycastAll(transform.position + (transform.right * RAY_DIST), -transform.right, RAY_DIST * 2));
+        hitsVX.AddRange(Physics2D.RaycastAll(transform.position + (transform.up * RAY_DIST) + (-transform.right * RAY_DIST), -(transform.up - transform.right).normalized, RAY_DIST * 2));
         float saveDist = float.MaxValue;
 
 
@@ -42,7 +42,7 @@ public class Collision : MonoBehaviour
             playerColTime = .25f;
         }
 
-        foreach(RaycastHit2D hit in hitsUP)
+        foreach(RaycastHit2D hit in hitsV)
         {
             if (hit.collider.gameObject != gameObject && hit.distance < saveDist)
             {
@@ -50,7 +50,7 @@ public class Collision : MonoBehaviour
                 saveDist = hit.distance;
             }
         }
-        foreach (RaycastHit2D hit in hitsDOWN)
+        foreach (RaycastHit2D hit in hitsH)
         {
             if (hit.collider.gameObject != gameObject && hit.distance < saveDist)
             {
@@ -58,7 +58,8 @@ public class Collision : MonoBehaviour
                 saveDist = hit.distance;
             }
         }
-        foreach (RaycastHit2D hit in hitsLEFT)
+        
+        foreach (RaycastHit2D hit in hitsVX)
         {
             if (hit.collider.gameObject != gameObject && hit.distance < saveDist)
             {
@@ -66,7 +67,7 @@ public class Collision : MonoBehaviour
                 saveDist = hit.distance;
             }
         }
-        foreach (RaycastHit2D hit in hitsRIGHT)
+        foreach (RaycastHit2D hit in hitsHX)
         {
             if (hit.collider.gameObject != gameObject && hit.distance < saveDist)
             {
@@ -92,6 +93,9 @@ public class Collision : MonoBehaviour
             mover.speed *= 1 - wall.Friction;
         }
 
-        mover.RK4();
+        for(int i = 0; i < 3; i++)
+        {
+            mover.RK4();
+        }
     }
 }
