@@ -8,6 +8,13 @@ using UnityEngine;
 public class Collision : MonoBehaviour
 {
     const float RAY_DIST = 3f;
+    float playerColTime = .25f;
+
+    private void Update()
+    {
+        playerColTime -= Time.deltaTime;
+    }
+
     private void OnTriggerStay2D(Collider2D col)
     {
         RK4Position mover = this.gameObject.GetComponent<RK4Position>();
@@ -24,6 +31,16 @@ public class Collision : MonoBehaviour
         hitsLEFT.AddRange(Physics2D.RaycastAll(transform.position, transform.right, RAY_DIST));
         hitsRIGHT.AddRange(Physics2D.RaycastAll(transform.position, -transform.right, RAY_DIST));
         float saveDist = float.MaxValue;
+
+
+        if (col.gameObject.tag == "Player" & playerColTime > 0)
+        {
+            return;
+        }
+        else if (col.gameObject.tag == "Player")
+        {
+            playerColTime = .25f;
+        }
 
         foreach(RaycastHit2D hit in hitsUP)
         {
