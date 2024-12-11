@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8571213485883284258}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4294068835366172911}
   - component: {fileID: 8066686226855300631}
   - component: {fileID: 6730942737965892480}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Puck
   m_TagString: Player
   m_Icon: {fileID: 0}
