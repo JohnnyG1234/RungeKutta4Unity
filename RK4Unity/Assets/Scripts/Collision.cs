@@ -35,7 +35,7 @@ public class Collision : MonoBehaviour
 
         if (col.gameObject.tag == "Player" & playerColTime > 0)
         {
-            return;
+            //return;
         }
         else if (col.gameObject.tag == "Player")
         {
@@ -83,6 +83,8 @@ public class Collision : MonoBehaviour
         }
         face /= faces.Count;
 
+        face = new Vector3((face.x == 1f ? 0.9f : face.x), (face.y == 1f ? 0.9f : face.y), (face.z == 1f ? 0.9f : face.z));
+
         Debug.Log("face: " + face);
         Vector3 current = this.gameObject.GetComponent<RK4Position>().direction;
 
@@ -92,7 +94,6 @@ public class Collision : MonoBehaviour
         {
             mover.speed *= 1 - wall.Friction;
         }
-
         for(int i = 0; i < 3; i++)
         {
             mover.RK4();

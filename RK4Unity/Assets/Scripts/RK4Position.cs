@@ -41,5 +41,10 @@ public class RK4Position : MonoBehaviour
     }
 
 
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, (transform.position + new Vector3(direction.x, direction.y, 0)));
+    }
+
 
 }
